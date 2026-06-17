@@ -5,6 +5,7 @@ GalleryX is a modern, client-side web application that enables users to securely
 ## GitHub Repository
 
 🔗 https://github.com/Rithu2007/CodeAlpha_ImageGallery
+
 🌐 Live Demo: https://rithu2007.github.io/CodeAlpha_ImageGallery/
 
 ## Overview
