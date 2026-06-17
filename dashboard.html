@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - GalleryX</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">GALLERYX</div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="gallery.html">Gallery</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="btn-text">Logout</button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="top-header">
+                <h1 id="welcome-message">Welcome</h1>
+                <div class="header-actions">
+                    <button class="btn-primary" onclick="window.location.href='gallery.html?upload=true'">Upload Image</button>
+                </div>
+            </header>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Images</h3>
+                    <p id="total-images-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Uploaded Today</h3>
+                    <p id="today-uploads-count">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Most Recent Upload</h3>
+                    <p id="recent-upload-time">N/A</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Storage Usage</h3>
+                    <p id="storage-usage">0 MB</p>
+                </div>
+            </div>
+
+            <section class="chart-section" style="margin-top: 2rem; background: var(--surface); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border);">
+                <h2 style="margin-bottom: 1rem;">Upload Activity (Last 7 Days)</h2>
+                <div id="activity-chart" style="display: flex; align-items: flex-end; gap: 10px; height: 150px; padding-top: 20px; border-bottom: 1px solid var(--border);">
+                    <!-- Bars injected via JS -->
+                </div>
+                <div id="activity-chart-labels" style="display: flex; justify-content: space-between; gap: 10px; margin-top: 10px; color: var(--text-muted); font-size: 0.8rem;">
+                    <!-- Labels injected via JS -->
+                </div>
+            </section>
+
+            <section class="quick-actions" style="margin-top: 2rem;">
+                <h2>Quick Actions</h2>
+                <div class="actions-grid">
+                    <a href="gallery.html" class="action-card">View Gallery</a>
+                    <a href="gallery.html?upload=true" class="action-card">Upload New</a>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

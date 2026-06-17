@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - GalleryX</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo">GALLERYX</div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="gallery.html" class="active">Gallery</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="btn-text">Logout</button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="gallery-header">
+                <div class="search-filter">
+                    <input type="text" id="search-input" placeholder="Search images...">
+                    <select id="filter-type">
+                        <option value="all">All Types</option>
+                        <option value="image/jpeg">JPEG</option>
+                        <option value="image/png">PNG</option>
+                        <option value="image/gif">GIF</option>
+                        <option value="image/webp">WEBP</option>
+                    </select>
+                    <select id="sort-by">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="name">File Name</option>
+                    </select>
+                </div>
+                <div class="header-actions" style="display: flex; gap: 10px;">
+                    <button class="btn-secondary" id="start-slideshow-btn">Start Slideshow</button>
+                    <button class="btn-primary" id="trigger-upload">Upload Image</button>
+                </div>
+                <input type="file" id="file-upload" accept="image/png, image/jpeg, image/jpg, image/gif, image/webp" multiple hidden>
+            </header>
+
+            <div id="drop-zone" class="drop-zone">
+                <p>Drag and drop images here or click to upload</p>
+            </div>
+
+            <div id="gallery-container">
+                <!-- Grouped images will be rendered here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox hidden">
+        <div class="lightbox-content">
+            <button class="lightbox-close">&times;</button>
+            <button class="lightbox-prev">&lsaquo;</button>
+            <img id="lightbox-img" src="" alt="Lightbox image">
+            <button class="lightbox-next">&rsaquo;</button>
+            <div class="lightbox-info">
+                <p id="lightbox-date"></p>
+                <div class="lightbox-actions">
+                    <a id="lightbox-download" download class="btn-small">Download</a>
+                    <button id="lightbox-delete" class="btn-small btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slideshow Setup Modal -->
+    <div id="slideshow-setup-modal" class="lightbox hidden" style="background: rgba(0,0,0,0.8);">
+        <div style="background: var(--surface); padding: 2rem; border-radius: 12px; width: 400px; max-width: 90%; margin: 100px auto;">
+            <h2 style="margin-bottom: 1rem;">Start Slideshow</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">Select a date to play its slideshow:</p>
+            <select id="slideshow-date-select" style="width: 100%; padding: 10px; margin-bottom: 1rem; background: var(--bg-dark); color: var(--text-main); border: 1px solid var(--border); border-radius: 6px;"></select>
+            <div style="display: flex; justify-content: flex-end; gap: 1rem;">
+                <button id="slideshow-cancel" class="btn-secondary">Cancel</button>
+                <button id="slideshow-play" class="btn-primary">Play</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slideshow Player -->
+    <div id="slideshow-player" class="lightbox hidden" style="background: black; z-index: 10000; flex-direction: column;">
+        <div style="position: absolute; top: 20px; left: 20px; color: white; z-index: 10001; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">
+            <div id="slideshow-status">Image 1 of 1</div>
+            <div id="slideshow-player-date" style="font-size: 0.9em; opacity: 0.8;"></div>
+        </div>
+        <div style="position: absolute; top: 20px; right: 20px; z-index: 10001; display: flex; gap: 10px;">
+            <button id="slideshow-pause" class="btn-secondary" style="border-color: white; color: white;">Pause</button>
+            <button id="slideshow-exit" class="btn-secondary" style="border-color: white; color: white;">Exit</button>
+        </div>
+        <button id="slideshow-player-prev" class="lightbox-prev">&lsaquo;</button>
+        <img id="slideshow-player-img" src="" alt="Slideshow Image" style="max-height: 90vh; max-width: 90vw; object-fit: contain; transition: opacity 0.5s ease-in-out;">
+        <button id="slideshow-player-next" class="lightbox-next">&rsaquo;</button>
+        
+        <!-- End Screen -->
+        <div id="slideshow-end-screen" class="hidden" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: black;">
+            <h2 style="font-size: 2rem; margin-bottom: 2rem; color: white;">End of slideshow</h2>
+            <div style="display: flex; gap: 1rem;">
+                <button id="slideshow-replay" class="btn-primary">Replay</button>
+                <button id="slideshow-exit-end" class="btn-secondary" style="border-color: white; color: white;">Exit Slideshow</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+</html>
